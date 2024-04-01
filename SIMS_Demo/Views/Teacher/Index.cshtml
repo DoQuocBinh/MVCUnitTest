@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Teacher>
+<h1>Teacher Home page</h1>
+
+<ul>
+    @foreach(var item in Model)
+    {
+        <li>@item.Name - @item.DoB</li>
+    }
+</ul>
+
+
+<ul>
+    <li><a asp-controller="Teacher" asp-action="NewTeacher">New Teacher</a></li>
+</ul>
+
+
+
