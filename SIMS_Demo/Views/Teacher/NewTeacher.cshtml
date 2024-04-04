@@ -3,12 +3,15 @@
 
 @using (Html.BeginForm("NewTeacher", "Teacher", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.Name)
-    @Html.TextBoxFor(m => m.Name)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new {placeholder="Teacher's Name", Class = "form-control" })
+    </div>
+   
 
-    <br />
-     
-    @Html.LabelFor(m => m.DoB)
-    @Html.TextBoxFor(m => m.DoB)
-    <input type="submit" value="Create" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.DoB)
+        @Html.TextBoxFor(m => m.DoB, new { placeholder = "Teacher's birthday", Class = "form-control" })
+    </div>
+    <input type="submit" value="Create" class="btn btn-success" />
 }
