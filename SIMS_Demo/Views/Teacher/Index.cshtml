@@ -1,15 +1,25 @@
 ﻿@model IEnumerable<Teacher>
 <h1>Teacher Home page</h1>
 
-<p>Hello @ViewBag.UserName</p>
-
-<ul>
+<p>Hello @ViewBag.UserName , you are @ViewBag.UserRole</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Dob</th>
+            <th>Action</th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
-        {
-        <li>@item.Name - @item.DoB</li>
+    {
+        <tr>
+            <td>@item.Name </td>
+            <td>@item.DoB</td>
+            <td><a class="btn btn-sm btn-primary"
+                   href="@Url.Action("Delete","Teacher",new {id=item.Id})">Delete</a></td>
+        </tr>
     }
-</ul>
-
+</table>
 
 <ul>
     <li><a asp-controller="Teacher" asp-action="NewTeacher">New Teacher</a></li>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using SIMS_Demo.Models;
 
 
@@ -12,6 +13,29 @@ namespace SIMS_Demo.Controllers
     public class TeacherController : Controller
     {
         static List<Teacher>? teachers = new List<Teacher>();
+
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            //read Teachers from a file
+            teachers = ReadFileToTeacherList("data.json");
+            //search and delete
+            var result = teachers.FirstOrDefault(t => t.Id == Id);
+            if (result != null)
+            {
+                teachers.Remove(result);
+                //update json file
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                string jsonString = JsonSerializer.Serialize(teachers, options);
+                using (StreamWriter writer = new StreamWriter("data.json"))
+                {
+                    writer.Write(jsonString);
+                }
+            }
+            return RedirectToAction("Index");
+
+
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
