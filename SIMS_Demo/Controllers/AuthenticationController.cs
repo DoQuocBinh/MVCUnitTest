@@ -20,11 +20,14 @@ namespace SIMS_Demo.Controllers
                 users.FirstOrDefault(u => u.Name == user.Name && u.Pass == user.Pass);
             if (result !=null)
             {
-                return Content($"Welcome {result.Name} with right {result.Role}");
+                HttpContext.Session.SetString("UserName", result.Name);
+                HttpContext.Session.SetString("Role", result.Role);
+                return RedirectToAction("Index", "Teacher");
             }
             else
             {
-                return Content("Invalid user!");
+                ViewBag.error = "Invalid user";
+                return View();
             }
 
         }

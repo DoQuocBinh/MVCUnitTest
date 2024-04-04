@@ -15,6 +15,8 @@ namespace SIMS_Demo.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            ViewBag.UserRole = HttpContext.Session.GetString("Role");
             teachers = ReadFileToTeacherList("data.json");
             return View(teachers);
         }

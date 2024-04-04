@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Teacher>
 <h1>Teacher Home page</h1>
 
+<p>Hello @ViewBag.UserName</p>
+
 <ul>
-    @foreach(var item in Model)
-    {
+    @foreach (var item in Model)
+        {
         <li>@item.Name - @item.DoB</li>
     }
 </ul>
